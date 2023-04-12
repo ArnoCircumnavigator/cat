@@ -1,12 +1,11 @@
 {
-  "name": "com.arno.cat",
+  "name": "com.arno.memo",
   "author": "Arno",
-  "displayName": "Cat",
-  "version": "2.0.0",
-  "description": "anything&everything",
+  "displayName": "Arno's memo",
+  "version": "1.0.0",
+  "description": "glads for you",
   "keywords": [
-    "Scada",
-    "VR"
+    "memo",
   ],
   "category": "personal assets",
   "repository": {
