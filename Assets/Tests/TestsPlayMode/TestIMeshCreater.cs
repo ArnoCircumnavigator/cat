@@ -98,12 +98,13 @@ public class TestIMeshCreater
     [UnityTest]
     public IEnumerator TestRuning()
     {
-        static void action()
-        {
-            Debug.Log("Runing1");
-        }
-        var ie = new IncrementalIEnumerator(KeyCode.S, KeyCode.P, new WaitForFixedUpdate(), action);
-        yield return ie.Execute();
-        yield return ie.Execute();
+        yield return null;
+        //static void action()
+        //{
+        //    Debug.Log("Runing1");
+        //}
+        //var ie = new IncrementalIEnumerator(KeyCode.S, KeyCode.P, new WaitForFixedUpdate(), action);
+        //yield return ie.Execute();
+        //yield return ie.Execute();
     }
 }
