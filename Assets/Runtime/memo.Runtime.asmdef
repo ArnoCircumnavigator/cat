@@ -1,5 +1,6 @@
 {
-    "name": "Cat.Editor",
+    "name": "memo.Runtime",
+    "rootNamespace": "",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,10 +1,12 @@
 {
-    "name": "TestsEditMode",
+    "name": "memo.Editor.Test",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Cat.Editor"
+        "Unity.PerformanceTesting",
+        "Unity.PerformanceTesting.Editor",
+        "memo.Editor"
     ],
     "includePlatforms": [
         "Editor"
