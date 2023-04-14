@@ -16,3 +16,4 @@ bin
 /AssetBundles
 /*.sln
 UserSettings
+Packages/packages-lock.json
