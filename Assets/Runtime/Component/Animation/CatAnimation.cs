@@ -1,5 +1,4 @@
-﻿using Cat.Logger;
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace Cat.Animation

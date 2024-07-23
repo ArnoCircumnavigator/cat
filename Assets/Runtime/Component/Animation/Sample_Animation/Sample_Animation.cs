@@ -1,5 +1,4 @@
 ﻿using Cat.Animation;
-using Cat.Logger;
 using System;
 using System.Collections;
 using System.Collections.Generic;

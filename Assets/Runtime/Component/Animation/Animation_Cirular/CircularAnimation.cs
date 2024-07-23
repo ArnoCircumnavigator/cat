@@ -14,7 +14,6 @@
  *----------------------------------------------------------------*/
 #endregion
 
-using Cat.Logger;
 using UnityEngine;
 
 namespace Cat.Animation

@@ -20,7 +20,6 @@
  *----------------------------------------------------------------*/
 #endregion
 
-using Cat.Logger;
 using System;
 using UnityEngine;
 

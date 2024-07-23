@@ -11,6 +11,7 @@ namespace Cat.Memo
         {
             Random = new System.Random();
         }
+
         /// <summary>
         /// 随机命中
         /// </summary>
