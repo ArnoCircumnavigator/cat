@@ -15,7 +15,7 @@ namespace memo.RuntimeTests
         [SetUp]
         public void TestSetup()
         {
-            
+
         }
 
         // TearDown : some action after every test
@@ -87,7 +87,8 @@ namespace memo.RuntimeTests
             loger.LogError("3");
             LogAssert.Expect(UnityEngine.LogType.Error, "3");
 
-            string path = Loger.FileLogPath + DateTime.Now.ToString("yyyy-MM-dd HH") + ".txt";
+            string path = Path.Combine(Loger.FileLogPath, DateTime.Now.ToString("yyyy-MM-dd HH") + ".log");
+            Debug.Log(path);
             Assert.IsTrue(File.Exists(path));
         }
     }

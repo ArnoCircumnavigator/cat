@@ -36,8 +36,8 @@
 //                    if (value)//从否 变为 真
 //                    {
 //                        try { timer?.Dispose(); timer = null; } catch { }
-//                        //创建定时器,一秒一次
-//                        timer = new Timer(new TimerCallback(LogToFile), null, 1000, 1000);
+//                        //创建定时器
+//                        timer = new Timer(new TimerCallback(LogToFile), null, 0, 100);
 
 //#if UNITY_EDITOR
 //                        UnityEditor.EditorApplication.playModeStateChanged += (e) =>
@@ -64,7 +64,7 @@
 //        /// <summary>
 //        /// 文件路径
 //        /// </summary>
-//        public static string FileLogPath = Path.Combine(new DirectoryInfo(Application.dataPath).Parent.FullName, "catlogs/");
+//        public static string FileLogPath = Path.Combine(new DirectoryInfo(Application.dataPath).Parent.FullName, "catlogs");
 
 //        /// <summary>
 //        /// 所需日志级别
@@ -123,7 +123,7 @@
 //            if (FileLogSwitch)
 //            {
 //                //包装message
-//                string head = "------------------------------------\r\n" + type.ToString() + " " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff") + "\r\n";
+//                string head = $"------------------------------------\r\n{DateTime.Now:yyyy-MM-dd HH:mm:ss fff}  [{type}]\r\n";
 //                string content_string = head + prefix + message.ToString() + "\n\n";
 
 //                //使用队列，保证强有序
@@ -142,7 +142,7 @@
 //                    {
 //                        Directory.CreateDirectory(FileLogPath);
 //                    }
-//                    string path = FileLogPath + DateTime.Now.ToString("yyyy-MM-dd HH") + ".txt";
+//                    string path = Path.Combine(FileLogPath, DateTime.Now.ToString("yyyy-MM-dd HH") + ".log");
 //                    FileMode mode = (File.Exists(path) ? FileMode.Append : FileMode.Create);
 //                    using FileStream fileStream = new FileStream(path, mode, FileAccess.Write, FileShare.None);
 //                    while (messages_waiting_to_file.Any())
