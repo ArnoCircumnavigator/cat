@@ -1,13 +1,10 @@
-﻿using Cat;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
 using System.IO;
-using UnityEngine;
 using UnityEngine.TestTools;
 using Debug = UnityEngine.Debug;
-using LogType = Cat.LogType;
 
-namespace memo.RuntimeTests
+namespace Cat.RuntimeTests
 {
     public class Test_Loger
     {

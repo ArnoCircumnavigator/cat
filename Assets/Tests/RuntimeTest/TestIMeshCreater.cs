@@ -1,10 +1,10 @@
-using MeshUtils;
+﻿using MeshUtils;
 using NUnit.Framework;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace memo.RuntimeTests
+namespace Cat.RuntimeTests
 {
     public class TestIMeshCreater
     {

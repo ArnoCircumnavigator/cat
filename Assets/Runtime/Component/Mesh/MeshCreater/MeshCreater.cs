@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 
 namespace MeshUtils
@@ -28,16 +28,16 @@ namespace MeshUtils
             var mesh = meshFilter.mesh;
 
 
-            // ¸üĞÂÍø¸ñµÄ¶¥µãºÍÈı½ÇĞÎ
+            // æ›´æ–°ç½‘æ ¼çš„é¡¶ç‚¹å’Œä¸‰è§’å½¢
             mesh.Clear();
             mesh.vertices = vertices;
             mesh.triangles = triangles;
             mesh.RecalculateNormals();
 
-            // ÉèÖÃÍø¸ñµÄUV
+            // è®¾ç½®ç½‘æ ¼çš„UV
             mesh.uv = uv;
 
-            // ¸üĞÂÍø¸ñµÄäÖÈ¾Æ÷ÊôĞÔ
+            // æ›´æ–°ç½‘æ ¼çš„æ¸²æŸ“å™¨å±æ€§
             meshRenderer.material = material;
 
             return go;
