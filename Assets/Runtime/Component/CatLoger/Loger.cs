@@ -21,7 +21,7 @@
 //        static Timer timer = null;
 //        static bool fileLogSwitch = false;
 //        /// <summary>
-//        /// 文件日志？
+//        /// 文件日志（在主线程中修改此开关）
 //        /// </summary>
 //        public static bool FileLogSwitch
 //        {
@@ -58,26 +58,17 @@
 //                    }
 //                }
 //                fileLogSwitch = value;
+
+//                //如果文件日志路径为空，则赋予默认值
+//                if (string.IsNullOrEmpty(FileLogPath))
+//                    FileLogPath = Path.Combine(new DirectoryInfo(Application.dataPath).Parent.FullName, "catlogs");
 //            }
 //        }
 
-//        static string fileLogPath = string.Empty;
 //        /// <summary>
 //        /// 文件路径(如果路径不存在，Loger会尝试创建)
 //        /// </summary>
-//        public static string FileLogPath
-//        {
-//            get
-//            {
-//                if (string.IsNullOrEmpty(fileLogPath))
-//                    fileLogPath = Path.Combine(new DirectoryInfo(Application.dataPath).Parent.FullName, "catlogs");
-//                return fileLogPath;
-//            }
-//            set
-//            {
-//                fileLogPath = value;
-//            }
-//        }
+//        public static string FileLogPath { get; set; }
 
 //        /// <summary>
 //        /// 所需日志级别
@@ -136,7 +127,7 @@
 //            if (FileLogSwitch)
 //            {
 //                //包装message
-//                string head = $"------------------------------------\r\n{DateTime.Now:yyyy-MM-dd HH:mm:ss fff}  [{type}]\r\n";
+//                string head = $"------------------------------------\r\n{DateTime.Now:yyyy-MM-dd HH:mm:ss:fff}  [{type}]\r\n";
 //                string content_string = head + prefix + message.ToString() + "\n\n";
 
 //                //使用队列，保证强有序

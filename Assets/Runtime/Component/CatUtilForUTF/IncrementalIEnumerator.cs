@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// 逐步式迭代器
+/// 手动启停 迭代器 （用于在UTF环境下做一个可控制的Update）
 /// </summary>
 public class IncrementalIEnumerator
 {
