@@ -19,7 +19,6 @@ namespace Cat.RuntimeTests
         async void Start()
         {
             Loger.FileLogSwitch = true;
-            StartCoroutine(Do());
 
             var op = new Op();
             await op;

@@ -18,7 +18,7 @@ namespace Cat
         /// <param name="buttons">可交互的按钮</param>
         public static async Task<DialogResult> ShowAsync(WindowStyle style, string title, string caption, Buttons buttons)
         {
-            var window = Show(style, title, caption, buttons);
+            MessageBoxWindow window = Show(style, title, caption, buttons);
             return await new WindowTask<MessageBoxWindow>(window);
         }
 

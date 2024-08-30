@@ -17,6 +17,8 @@ namespace Cat.RuntimeTests
 
         }
 
+        private static Loger loger = new Loger("Test_MessageBox");
+
         [Test, Order(0)]
         public void Test_Sync()
         {
@@ -40,11 +42,11 @@ namespace Cat.RuntimeTests
             DialogResult result = await MessageBox.ShowAsync(WindowStyle.Warning, "小心", "请确保了解业务后再操作", Buttons.YesNo);
             if (result == DialogResult.Yes)
             {
-
+                loger.Log("yes");
             }
             else if (result == DialogResult.No)
             {
-
+                loger.Log("no");
             }
         }
     }
