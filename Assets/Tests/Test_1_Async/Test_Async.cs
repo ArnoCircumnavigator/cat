@@ -1,9 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Collections;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -48,11 +46,11 @@ namespace Cat.RuntimeTests
         [UnityTest]
         public IEnumerator VerifyScene_2()
         {
-            yield return new WaitForSeconds(60);
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    yield return null;
-            //}
+            //yield return new WaitForSeconds(60);
+            for (int i = 0; i < 10; i++)
+            {
+                yield return null;
+            }
         }
 
         [TearDown]
