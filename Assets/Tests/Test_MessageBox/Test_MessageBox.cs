@@ -48,8 +48,8 @@ namespace Cat.RuntimeTests
             //创建一个EventSystem，来监听正常的UI事件
             var eventSystemObject = new GameObject("BasicElement")
                 .AddComponent<EventSystem>().gameObject
-                .AddComponent<StandaloneInputModule>()
-                .gameObject.AddComponent<Camera>();
+                .AddComponent<StandaloneInputModule>().gameObject
+                .AddComponent<Camera>();
 
             //创建窗口
             Task<DialogResult> task = MessageBox.ShowAsync(WindowStyle.Warning, "小心", "请确保了解业务后再操作", Buttons.YesNo);
