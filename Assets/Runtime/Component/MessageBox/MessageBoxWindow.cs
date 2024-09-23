@@ -160,9 +160,9 @@ namespace Cat
             bt3 = FindChild(uiGo.transform, "bt3").GetComponent<Button>();
             bt3Text = bt3.transform.GetComponentInChildren<Text>();
 
-            infoSprite = Resources.Load<Sprite>("Testure/info");
-            warningSprite = Resources.Load<Sprite>("Testure/warning");
-            errorSprite = Resources.Load<Sprite>("Testure/error");
+            infoSprite = Resources.Load<Sprite>("Texture/info");
+            warningSprite = Resources.Load<Sprite>("Texture/warning");
+            errorSprite = Resources.Load<Sprite>("Texture/error");
         }
 
         Transform FindChild(Transform parent, string name)
