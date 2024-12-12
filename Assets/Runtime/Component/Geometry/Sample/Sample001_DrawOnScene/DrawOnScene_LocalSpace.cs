@@ -25,7 +25,7 @@ namespace GeometryAssist.Sample
             obb.rotation = matrix.rotation * obb.rotation;
 
             //画obb
-            GeometricDebug.DrawWireCube(obb, Color.yellow);
+            GDebug.DrawWireCube(obb, Color.yellow);
         }
     }
 }

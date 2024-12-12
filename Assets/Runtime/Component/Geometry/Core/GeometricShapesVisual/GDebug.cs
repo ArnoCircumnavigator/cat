@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GeometryAssist
 {
-    public static class GeometricDebug
+    public static class GDebug
     {
         static GeometricShapesVisualMonoBehaviour _mono;
         static GeometricShapesVisualMonoBehaviour mono
