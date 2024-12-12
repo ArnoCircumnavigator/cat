@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using GeometryAssist;
+﻿using GeometryAssist;
 using UnityEngine;
-using static GeometryAssist.GeometryAssistTool;
 public class SampleScene002_2 : MonoBehaviour
 {
     public OrientedBoundsVisual obbVisual;
