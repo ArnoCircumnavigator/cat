@@ -1,0 +1,85 @@
+﻿{
+  "name": "test_tree",
+  "node": {
+    "type": "BehaviourTreeGeneric.BSequence",
+    "name": "seq1",
+    "arg": {},
+    "child": [
+      {
+        "type": "BehaviourTreeGeneric.BSelector",
+        "name": "sel",
+        "arg": {},
+        "child": [
+          {
+            "type": "BehaviourTreeGeneric.BSequence",
+            "name": "seq2",
+            "arg": {},
+            "child": [
+              {
+                "type": "BehaviourTreeGeneric.BCondition",
+                "name": "BCondition  50",
+                "arg": {
+                  "HP": "50"
+                },
+                "child": []
+              },
+              {
+                "type": "BehaviourTreeGeneric.BAction",
+                "name": "Attack 50",
+                "arg": {},
+                "child": []
+              }
+            ]
+          },
+          {
+            "type": "BehaviourTreeGeneric.BSequence",
+            "name": "seq",
+            "arg": {},
+            "child": [
+              {
+                "type": "BehaviourTreeGeneric.BSequence",
+                "name": "seq",
+                "arg": {},
+                "child": [
+                  {
+                    "type": "BehaviourTreeGeneric.BCondition",
+                    "name": "ConditionMp",
+                    "arg": {
+                      "MP": "20"
+                    },
+                    "child": []
+                  },
+                  {
+                    "type": "BehaviourTreeGeneric.BAction",
+                    "name": "Skill",
+                    "arg": {},
+                    "child": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "BehaviourTreeGeneric.BSequence",
+            "name": "seq",
+            "arg": {},
+            "child": [
+              {
+                "type": "BehaviourTreeGeneric.BAction",
+                "name": "GoHome",
+                "arg": {},
+                "child": []
+              },
+              {
+                "type": "BehaviourTreeGeneric.BAction",
+                "name": "MoveRound",
+                "arg": {},
+                "child": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

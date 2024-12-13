@@ -1,0 +1,22 @@
+﻿{
+  "name": "test_tree",
+  "node": {
+    "type": "BehaviourTreeGeneric.BSequence",
+    "name": "1级顺序节点",
+    "arg": {},
+    "child": [
+      {
+        "type": "BehaviourTreeGeneric.NodeSample.ConditionEmpty",
+        "name": "看是否为空",
+        "arg": {},
+        "child": []
+      },
+      {
+        "type": "BehaviourTreeGeneric.NodeSample.ActionCreatJob",
+        "name": "创建任务",
+        "arg": {},
+        "child": []
+      }
+    ]
+  }
+}
