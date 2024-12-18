@@ -38,7 +38,7 @@ namespace Cat.RuntimeTests
             string jsonString = File.ReadAllText(path);
             JObject json = JObject.Parse(jsonString);
             BTree btree = new BTree();
-            btree.Load(json);
+            btree.Load(json.ToString());
 
             Debug.Log(btree);
         }
@@ -52,7 +52,7 @@ namespace Cat.RuntimeTests
             string jsonString = File.ReadAllText(path);
             JObject json = JObject.Parse(jsonString);
             BTree btree = new BTree();
-            btree.Load(json);
+            btree.Load(json.ToString());
             while (true)
             {
                 BContext input = new BContext();
@@ -72,7 +72,7 @@ namespace Cat.RuntimeTests
             string jsonString = File.ReadAllText(path);
             JObject json = JObject.Parse(jsonString);
             BTree btree = new BTree();
-            btree.Load(json);
+            btree.Load(json.ToString());
             Debug.Log(btree);
 
             while (true)

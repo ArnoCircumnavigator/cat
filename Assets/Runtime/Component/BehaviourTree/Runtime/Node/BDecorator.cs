@@ -1,5 +1,5 @@
 ﻿/*
- * 装饰器节点，有且只有一个孩子
+ * 装饰器节点，有且仅有一个孩子
  */
 
 using System;
@@ -16,6 +16,7 @@ namespace BehaviourTreeGeneric
         /// 必须不为空
         /// </summary>
         protected BNode _child;
+
         /// <summary>
         /// 装饰节点
         /// </summary>

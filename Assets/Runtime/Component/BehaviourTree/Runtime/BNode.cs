@@ -9,7 +9,9 @@ namespace BehaviourTreeGeneric
     {
         protected string type;
         protected string name;
-        protected BNode _parent; //直接父节点
+
+        internal BNode _parent; //直接父节点
+
         ActionResult _state = ActionResult.NONE;
 
         protected BNode()
@@ -54,16 +56,15 @@ namespace BehaviourTreeGeneric
         public virtual ActionResult Trick(BContext input) { return ActionResult.SUCCESS; }
         public virtual void Exit(BContext input) { }
 
-        
-
         public override string ToString()
         {
             //return $"{name}[{type}]";
             return $"[{name}]";
         }
 
-        public void Load(JToken json)
+        public void Load(string nodePersistence)
         {
+            var json = JToken.Parse(nodePersistence);
             type = json["type"].ToString();
             name = json["name"].ToString();
 
@@ -85,7 +86,7 @@ namespace BehaviourTreeGeneric
                 }
             }
 
-            if(this is BComposite bComposite)
+            if (this is BComposite bComposite)
             {
                 for (int i = 0; i < json["child"].Count(); i++)
                 {
@@ -93,7 +94,7 @@ namespace BehaviourTreeGeneric
                     Type chile_type = Type.GetType(typename);
                     if (!(Activator.CreateInstance(chile_type) is BNode enode))
                         throw new Exception($"节点无法实例化{typename}，请确保程序集正确");
-                    enode.Load(json["child"][i]);//子节点读取
+                    enode.Load(json["child"][i].ToString());//子节点读取
                     enode._parent = this;//设置其父节点为自身
                     bComposite.AddChild(enode);
                 }

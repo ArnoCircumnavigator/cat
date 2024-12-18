@@ -3,12 +3,19 @@
 namespace BehaviourTreeGeneric
 {
     /// <summary>
-    /// 复合节点
+    /// 复合节点，有些地方也称“控制节点”
     /// </summary>
     public class BComposite : BNode
     {
+        /// <summary>
+        /// 当前索引
+        /// </summary>
         protected int _index;
-        protected List<BNode> _children = new List<BNode>(); //直接子节点
+
+        /// <summary>
+        /// 直接子节点
+        /// </summary>
+        protected List<BNode> _children = new List<BNode>();
 
         public BComposite()
             : base()
@@ -24,21 +31,30 @@ namespace BehaviourTreeGeneric
         public void RemoveChild(BNode node)
         {
             this._children.Remove(node);
+            node._parent = null;
         }
+
         public void AddChild(BNode node)
         {
             this._children.Add(node);
+            node._parent = this;
         }
-        public void InsertChild(BNode prenode, BNode node)
+
+        public void InsertChild(int index, BNode node)
         {
-            int index = this._children.FindIndex((a) => { return a == prenode; });
             this._children.Insert(index, node);
+            node._parent = this;
         }
-        public void ReplaceChild(BNode prenode, BNode node)
+
+        public void ReplaceChild(int index, BNode node)
         {
-            int index = this._children.FindIndex((a) => { return a == prenode; });
+            var old = this._children[index];
+            old._parent = null;
+
             this._children[index] = node;
+            node._parent = this;
         }
+
         public bool ContainChild(BNode node)
         {
             return this._children.Contains(node);

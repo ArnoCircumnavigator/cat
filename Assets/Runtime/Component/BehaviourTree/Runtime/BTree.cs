@@ -26,8 +26,9 @@ namespace BehaviourTreeGeneric
             return root.Execute(input);
         }
 
-        public void Load(JObject json)
+        public void Load(string treePersistence)
         {
+            JObject json = JObject.Parse(treePersistence);
             name = json["name"].ToString();
             root = null;
             if (json.ContainsKey("node"))
@@ -37,7 +38,7 @@ namespace BehaviourTreeGeneric
                 root = Activator.CreateInstance(t) as BNode;
                 if (root == null)
                     throw new Exception($"行为树无法实例化{typename}，请确保程序集正确");
-                root.Load(json["node"]);
+                root.Load(json["node"].ToString());
             }
         }
 

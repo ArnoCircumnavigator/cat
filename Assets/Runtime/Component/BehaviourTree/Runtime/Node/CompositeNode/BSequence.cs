@@ -5,7 +5,6 @@
     /// </summary>
     public class BSequence : BComposite
     {
-
         public BSequence()
             : base()
         {
@@ -31,9 +30,6 @@
                 if (_index >= _children.Count)
                     return ActionResult.SUCCESS;
             }
-
-            
-
             return ActionResult.RUNNING;
         }
     }
