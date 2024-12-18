@@ -12,14 +12,14 @@
             name = "Sequence";
         }
 
-        public override ActionResult Trick(BInput input)
+        public override ActionResult Trick(BContext bcontext)
         {
             //顺序节点的完成条件
             if (this._index >= this._children.Count)
                 return ActionResult.SUCCESS;
 
             BNode node = this._children[this._index];
-            ActionResult result = node.Execute(input);
+            ActionResult result = node.Execute(bcontext);
 
             if (result == ActionResult.FAILURE)
                 return ActionResult.FAILURE;

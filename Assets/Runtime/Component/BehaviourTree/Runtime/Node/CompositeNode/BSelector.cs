@@ -11,14 +11,14 @@
             name = "Selector";
         }
 
-        public override ActionResult Trick(BInput input)
+        public override ActionResult Trick(BContext bcontext)
         {
             //选择节点的完成条件
             if (_index >= _children.Count)
                 return ActionResult.FAILURE;
 
             BNode node = _children[_index];
-            ActionResult result = node.Execute(input);
+            ActionResult result = node.Execute(bcontext);
 
             if (result == ActionResult.SUCCESS)
                 return ActionResult.SUCCESS;

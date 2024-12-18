@@ -55,7 +55,7 @@ namespace Cat.RuntimeTests
             btree.Load(json);
             while (true)
             {
-                BInput input = new BInput();
+                BContext input = new BContext();
                 ActionResult res = btree.Run(input);
                 if (res != ActionResult.RUNNING)
                     break;
@@ -79,7 +79,7 @@ namespace Cat.RuntimeTests
             {
                 Debug.Log("----------------------------");
                 //Debug.Log("trick");
-                BInput input = new BInput();
+                BContext input = new BContext();
                 ActionResult res = btree.Run(input);
                 if(res != ActionResult.RUNNING)
                     break;

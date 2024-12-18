@@ -2,7 +2,7 @@
 {
     public class ConditionEmpty : BCondition
     {
-        public override ActionResult Trick(BInput input)
+        public override ActionResult Trick(BContext input)
         {
             if (!input.hasCargo)
             {

@@ -1,4 +1,9 @@
-﻿namespace BehaviourTreeGeneric
+﻿/*
+ * 条件节点无孩子
+ */
+
+
+namespace BehaviourTreeGeneric
 {
     /// <summary>
     /// 条件节点

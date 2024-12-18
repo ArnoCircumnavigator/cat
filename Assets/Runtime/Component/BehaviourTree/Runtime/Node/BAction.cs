@@ -1,4 +1,8 @@
-﻿namespace BehaviourTreeGeneric
+﻿/*
+ * 执行节点无孩子
+ */
+
+namespace BehaviourTreeGeneric
 {
     /// <summary>
     /// 执行节点
@@ -11,7 +15,7 @@
             name = "Action";
         }
 
-        public override ActionResult Trick(BInput input)
+        public override ActionResult Trick(BContext bcontext)
         {
             UnityEngine.Debug.Log($"\"{this}\" tricking");
             return ActionResult.SUCCESS;

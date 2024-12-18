@@ -11,7 +11,7 @@
             name = "Parallel";
         }
 
-        public override ActionResult Trick(BInput input)
+        public override ActionResult Trick(BContext bcontext)
         {
             //平行节点的完成条件
             if (_index >= _children.Count)
@@ -19,7 +19,7 @@
 
             BNode node = _children[_index];
 
-            ActionResult result = node.Execute(input);
+            ActionResult result = node.Execute(bcontext);
 
             if (result != ActionResult.RUNNING)
             {

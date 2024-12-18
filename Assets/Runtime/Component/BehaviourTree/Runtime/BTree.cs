@@ -21,7 +21,7 @@ namespace BehaviourTreeGeneric
 
         public BTree() { }
 
-        public ActionResult Run(BInput input)
+        public ActionResult Run(BContext input)
         {
             return root.Execute(input);
         }
@@ -49,8 +49,11 @@ namespace BehaviourTreeGeneric
             void recursion(BNode node, int deep)
             {
                 sb.AppendLine($"{new string(' ', deep * 4)}{node.ToString()}");
-                foreach (BNode c in node.GetChildrenCopy())
-                    recursion(c, deep++);
+                if(node is BComposite bComposite)
+                {
+                    foreach (BNode c in bComposite.GetChildrenCopy())
+                        recursion(c, deep++);
+                }
             }
 
             recursion(root, 1);
