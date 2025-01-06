@@ -2,21 +2,18 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using static BehaviourTreeGeneric.Literal;
 
 namespace BehaviourTreeGeneric
 {
     public unsafe class BNode
     {
-        protected string type;
-        protected string name;
-
-        internal BNode _parent; //直接父节点
+        string name;
 
         ActionResult _state = ActionResult.NONE;
 
         protected BNode()
         {
-            this.type = GetType().FullName;
             this.name = GetType().Name;
         }
 
@@ -56,19 +53,15 @@ namespace BehaviourTreeGeneric
         public virtual ActionResult Trick(BContext input) { return ActionResult.SUCCESS; }
         public virtual void Exit(BContext input) { }
 
-        public override string ToString()
+        /// <summary>
+        /// 反序列化
+        /// </summary>
+        /// <param name="json"></param>
+        public void Deserialize(JToken json)
         {
-            //return $"{name}[{type}]";
-            return $"[{name}]";
-        }
+            name = json[NAME].ToString();
 
-        public void Load(string nodePersistence)
-        {
-            var json = JToken.Parse(nodePersistence);
-            type = json["type"].ToString();
-            name = json["name"].ToString();
-
-            var arg = json["arg"];
+            JToken arg = json[ARG];
             Type t = GetType();
             FieldInfo[] fieldInfos = t.GetFields();
             for (int i = 0; i < fieldInfos.Length; i++)
@@ -85,20 +78,36 @@ namespace BehaviourTreeGeneric
                     info.SetValue(this, value);
                 }
             }
+        }
 
-            if (this is BComposite bComposite)
+        /// <summary>
+        /// 序列化
+        /// </summary>
+        /// <returns></returns>
+        public JToken Serialize()
+        {
+            JObject j_arg = new JObject();
+            Type t = GetType();
+            FieldInfo[] fieldInfos = t.GetFields();
+            for (int i = 0; i < fieldInfos.Length; i++)
             {
-                for (int i = 0; i < json["child"].Count(); i++)
-                {
-                    string typename = json["child"][i]["type"].ToString();
-                    Type chile_type = Type.GetType(typename);
-                    if (!(Activator.CreateInstance(chile_type) is BNode enode))
-                        throw new Exception($"节点无法实例化{typename}，请确保程序集正确");
-                    enode.Load(json["child"][i].ToString());//子节点读取
-                    enode._parent = this;//设置其父节点为自身
-                    bComposite.AddChild(enode);
-                }
+                FieldInfo info = fieldInfos[i];
+                j_arg[info.Name] = info.GetValue(this).ToString();
             }
+
+            JObject json = new JObject
+            {
+                { NAME, this.name },
+                { ARG, j_arg}
+            };
+
+            return json;
+        }
+
+        public override string ToString()
+        {
+            //return $"{name}[{type}]";
+            return $"[{name}]  -  {GetType()}";
         }
     }
 }

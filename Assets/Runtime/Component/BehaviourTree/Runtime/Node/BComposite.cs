@@ -28,31 +28,29 @@ namespace BehaviourTreeGeneric
             _index = 0;
         }
 
+        public int GetChildCount()
+        {
+            return this._children.Count;
+        }
+
         public void RemoveChild(BNode node)
         {
             this._children.Remove(node);
-            node._parent = null;
         }
 
         public void AddChild(BNode node)
         {
             this._children.Add(node);
-            node._parent = this;
         }
 
         public void InsertChild(int index, BNode node)
         {
             this._children.Insert(index, node);
-            node._parent = this;
         }
 
         public void ReplaceChild(int index, BNode node)
         {
-            var old = this._children[index];
-            old._parent = null;
-
             this._children[index] = node;
-            node._parent = this;
         }
 
         public bool ContainChild(BNode node)

@@ -1,12 +1,14 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Cat;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Text;
+using static BehaviourTreeGeneric.Literal;
 
 namespace BehaviourTreeGeneric
 {
     public class BTree
     {
-        string name;
+        public string name;
 
         /// <summary>
         /// 根部节点
@@ -21,24 +23,71 @@ namespace BehaviourTreeGeneric
 
         public BTree() { }
 
+        static readonly ILoger Loger = new Loger("btree");
         public ActionResult Run(BContext input)
         {
             return root.Execute(input);
         }
 
-        public void Load(string treePersistence)
+        public void Load(JToken json)
         {
-            JObject json = JObject.Parse(treePersistence);
-            name = json["name"].ToString();
-            root = null;
-            if (json.ContainsKey("node"))
+            try
             {
-                string typename = json["node"]["type"].ToString();
-                Type t = Type.GetType(typename);
-                root = Activator.CreateInstance(t) as BNode;
-                if (root == null)
-                    throw new Exception($"行为树无法实例化{typename}，请确保程序集正确");
-                root.Load(json["node"].ToString());
+                name = json[NAME].ToString();
+                JToken json_node = json[NODE];
+                if (json_node == null)
+                    return;
+
+                //根
+                root = (BNode)Activator.CreateInstance(Type.GetType(json_node[TYPE].ToString()));
+
+                //递归，完成反序列化
+                DeserializeWithRecursion(root, json_node);
+            }
+            catch (Exception ex)
+            {
+                UnityEngine.Debug.LogError($"反序列化异常 {ex}");
+            }
+
+            static void DeserializeWithRecursion(BNode parent, JToken json_node)
+            {
+                if (json_node == null)
+                    return;
+                parent.Deserialize(json_node);
+                foreach (JToken cj in json_node[CHILD])
+                {
+                    BNode bnode = (BNode)Activator.CreateInstance(Type.GetType(cj[TYPE].ToString()));
+                    if (parent is BComposite composite)
+                        composite.AddChild(bnode);
+                    DeserializeWithRecursion(bnode, cj);
+                }
+            }
+        }
+
+        //序列化回json文本
+        public JToken Serialize()
+        {
+            JObject json = new JObject();
+            json[NAME] = name;//树的名字
+            JObject jnode = new JObject();
+            Serialize(jnode, root);
+            json[NODE] = jnode;
+            return json;
+
+            static void Serialize(JToken j, BNode b)
+            {
+                JToken nodejson = b.Serialize();
+                Loger.Log(nodejson);
+                //j = nodejson;
+
+                if (b is BComposite composite)
+                {
+                    var childCount = composite.GetChildCount();
+                    for (int i = 0; i < childCount; i++)
+                    {
+                        Serialize(nodejson, composite[i]);
+                    }
+                }
             }
         }
 
@@ -50,7 +99,7 @@ namespace BehaviourTreeGeneric
             void recursion(BNode node, int deep)
             {
                 sb.AppendLine($"{new string(' ', deep * 4)}{node.ToString()}");
-                if(node is BComposite bComposite)
+                if (node is BComposite bComposite)
                 {
                     foreach (BNode c in bComposite.GetChildrenCopy())
                         recursion(c, deep++);

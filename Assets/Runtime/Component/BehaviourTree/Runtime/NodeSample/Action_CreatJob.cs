@@ -14,16 +14,20 @@ namespace BehaviourTreeGeneric.NodeSample
 
         public override ActionResult Trick(BContext input)
         {
-            Debug.Log("ing");
-            if (Time.time - this.m_ftime > 5f)
-            {
-                //任务创建完成了
-                Debug.Log("▶▶▶CreatJob finished");
-                return ActionResult.SUCCESS;
-            }
+            //Debug.Log("ing");
+            //if (Time.time - this.m_ftime > 5f)
+            //{
+            //    //任务创建完成了
+            //    Debug.Log("▶▶▶CreatJob finished");
+            //    return ActionResult.SUCCESS;
+            //}
 
-            return ActionResult.RUNNING;
+            //return ActionResult.RUNNING;
+
+
+            //任务创建完成了
+            Debug.Log("▶▶▶CreatJob finished");
+            return ActionResult.SUCCESS;
         }
     }
-
 }

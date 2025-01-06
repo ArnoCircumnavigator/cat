@@ -38,9 +38,30 @@ namespace Cat.RuntimeTests
             string jsonString = File.ReadAllText(path);
             JObject json = JObject.Parse(jsonString);
             BTree btree = new BTree();
-            btree.Load(json.ToString());
+            btree.Load(json);
 
             Debug.Log(btree);
+        }
+
+        [Test, Order(1)]
+        public void Test_SerializeTree()
+        {
+            string path = Path.Combine(Application.dataPath, "Tests", "Test_BehaviourTree", "bt1.json");
+            if (!File.Exists(path))
+                Assert.Inconclusive();
+            string jsonString = File.ReadAllText(path);
+            JObject json = JObject.Parse(jsonString);
+            BTree btree = new BTree();
+            btree.Load(json);
+
+            Debug.Log(btree);
+
+            string copy_path = Path.Combine(Application.dataPath, "Tests", "Test_BehaviourTree", "bt1_copy.json");
+            if (File.Exists(copy_path))
+                File.Delete(copy_path);
+            JToken serializeResult = btree.Serialize();
+            File.WriteAllText(copy_path, serializeResult.ToString());
+            Debug.Log(serializeResult);
         }
 
         [UnityTest, Order(1)]
@@ -52,7 +73,7 @@ namespace Cat.RuntimeTests
             string jsonString = File.ReadAllText(path);
             JObject json = JObject.Parse(jsonString);
             BTree btree = new BTree();
-            btree.Load(json.ToString());
+            btree.Load(json);
             while (true)
             {
                 BContext input = new BContext();
@@ -72,7 +93,7 @@ namespace Cat.RuntimeTests
             string jsonString = File.ReadAllText(path);
             JObject json = JObject.Parse(jsonString);
             BTree btree = new BTree();
-            btree.Load(json.ToString());
+            btree.Load(json);
             Debug.Log(btree);
 
             while (true)
