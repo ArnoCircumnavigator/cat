@@ -8,7 +8,7 @@ namespace BehaviourTreeGeneric
 {
     public unsafe class BNode
     {
-        string name;
+        public string name;
 
         ActionResult _state = ActionResult.NONE;
 
